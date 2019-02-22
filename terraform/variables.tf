@@ -8,6 +8,3 @@ variable "pipeline_name" {
   default = "pgr301-pipe"
 }
 
-variable "heroku_email" {
-  default = "anonymeksamen123@gmail.com"
-}
