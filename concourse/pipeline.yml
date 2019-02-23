@@ -5,6 +5,7 @@ jobs:
   - aggregate:
     - get: exam-app
     - get: exam-infra
+      trigger: true
   - task: mvn_build
     file: exam-infra/concourse/java/task.yml
     input_mapping: {source: exam-app}
@@ -17,12 +18,6 @@ jobs:
       heroku_email: ((heroku_email))
       heroku_api_token: ((heroku_api_key))
 
-  - task: heroku_task
-    file: exam-infra/concourse/heroku/heroku_task.yml
-    params:
-      heroku_email: ((heroku_email))
-      heroku_api_token: ((heroku_api_key))
-      app_name: ((heroku_app_name))
 
 - name: infra
   plan:
