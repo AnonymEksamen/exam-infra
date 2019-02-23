@@ -5,4 +5,6 @@ credentials_example.yml
 credentials.yml
 .terraform
 .tfstate
+.idea/workspace.xml
+.idea/
 
