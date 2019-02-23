@@ -3,17 +3,20 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: wingrunr21/alpine-heroku-cli
+    repository: psharkey/heroku-cli
     tag: "latest"
 
+inputs:
+  - name: source
+
 params:
-  heroku_email:
-  heroku_api_token:
-  app_name:
+  heroku_email: ((heroku_email))
+  heroku_api_token: ((heroku_api_token))
+  app_name: ((heroku_app_name))
 
 run:
   path: sh
-  dir: .
+  dir: source
   args:
     - -exc
     - |
@@ -25,5 +28,4 @@ run:
           login ${heroku_email}
           password ${heroku_api_token}
       EOF
-      export HEROKU_API_KEY=${heroku_api_token}
-      heroku container:release web -a ${app_name}
+      git push https://git.heroku.com/${app_name}.git master:refs/heads/master
