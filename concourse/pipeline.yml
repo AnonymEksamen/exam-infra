@@ -4,6 +4,7 @@ jobs:
   plan:
   - aggregate:
     - get: exam-app
+      trigger: true
     - get: exam-infra
       trigger: true
   - task: mvn_build
